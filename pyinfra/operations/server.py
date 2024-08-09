@@ -723,11 +723,11 @@ def crontab(
         if any(
             (
                 special_time != existing_crontab.get("special_time"),
-                minute != existing_crontab.get("minute"),
-                hour != existing_crontab.get("hour"),
-                month != existing_crontab.get("month"),
-                day_of_week != existing_crontab.get("day_of_week"),
-                day_of_month != existing_crontab.get("day_of_month"),
+                try_int(minute) != existing_crontab.get("minute"),
+                try_int(hour) != existing_crontab.get("hour"),
+                try_int(month) != existing_crontab.get("month"),
+                try_int(day_of_week) != existing_crontab.get("day_of_week"),
+                try_int(day_of_month) != existing_crontab.get("day_of_month"),
                 existing_crontab_command != command,
             ),
         ):
